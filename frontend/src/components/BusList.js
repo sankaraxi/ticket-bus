@@ -3,11 +3,17 @@ import { CDN_URL } from '../utils/constants';
 
 import { IoLocationSharp } from "react-icons/io5";
 import { FaLocationArrow } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 const BusList = () => {
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleBookNow = (bus) => {
+    navigate('/booking', { state: { bus } });
+  }
 
   useEffect(() => {
     // Fetch bus data from the backend using fetch API
@@ -66,8 +72,6 @@ const BusList = () => {
                <div className="sm:w-9/12 flex flex-col m-4 p-4 justify-center">
                    <h2 className="text-md sm:text-6xl font-poppins pb-4 font-semibold">{bus?.name}</h2>
                    <h4 className="flex gap-2 items-center text-md sm:text-3xl pb-4 font-palanquin "><span><FaLocationArrow /></span> <span className='font-bold'>{bus?.destination}</span></h4>
-                  
-                   
                     <h4 className="text-md sm:text-xl font-palanquin "><span className='font-semibold'>Departure Time:</span> <span className='font-bold'>{bus?.departureTime}</span></h4>
                     <h4 className="text-md sm:text-xl pb-4 font-palanquin "><span className='font-semibold'>Arrival Time:</span> <span className='font-bold'>{bus?.arrivalTime}</span></h4>
                     <h4 className="text-md sm:text-3xl font-extrabold font-palanquin ">{'\u20B9'} {bus?.price}</h4>
@@ -83,7 +87,7 @@ const BusList = () => {
              
            <button 
                className="absolute right-24 bottom-8 border border-solid border-transparent bg-red-500 text-white p-2 ml-2 rounded-md" key={bus?._id}
-              //  onClick={() => handleAddItems(item)}
+                onClick={() => handleBookNow(bus)}
                >
                    <div className='' >
                        <h4 className='text-sm sm:text-lg'>
