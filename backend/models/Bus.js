@@ -6,6 +6,7 @@ const BusSchema = new mongoose.Schema({
   departureTime: { type: String, required: true },
   arrivalTime: { type: String, required: true },
   price: { type: Number, required: true },
+  image_id: { type: String, required: true },
 });
 
 const Bus = mongoose.model('Bus', BusSchema);

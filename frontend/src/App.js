@@ -5,7 +5,7 @@ import Footer from "./components/Footer"
 import Home from "./components/Home"
 import Booking from "./components/Booking"
 import BusList from "./components/BusList"
-
+import About from "./components/About"
 
 const App = () => {
     return (
@@ -34,6 +34,10 @@ export const appRouter = createBrowserRouter([
         path: "/buses",
         element: <BusList />,
       },
+      {
+        path: "/about",
+        element: <About />,
+      }
     ] 
   }
 ])

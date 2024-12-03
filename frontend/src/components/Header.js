@@ -8,8 +8,8 @@ const Header = () => {
         window.scrollTo(0, 0)
     }, [])
   return (
-    <div className='fixed w-full z-30 xl:py-5'>
-        <div className='z-50 xl:mx-0 px-4 xl:px-10 bg-white flex items-center justify-between bg-opacity-85 shadow-md'>
+    <div className='w-full z-30'>
+        <div className='z-50 px-4 xl:px-10 bg-white flex items-center justify-between bg-opacity-85 shadow-md'>
             <Link to='/'>
                 <img 
                     src={LOGO}
