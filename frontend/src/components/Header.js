@@ -4,16 +4,12 @@ import Nav from './Nav'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
   return (
-    <div className='w-full z-30'>
-        <div className='z-50 px-4 xl:px-10 bg-white flex items-center justify-between bg-opacity-85 shadow-md'>
+    <div className='fixed top-0 p-4 px-44 z-50 w-full bg-gray-200 bg-gradient-to-br from-white flex items-center justify-between shadow-md'>
             <Link to='/'>
                 <img 
                     src={LOGO}
-                    className='w-g0 xl:w-64'
+                    className='w-32 xl:w-64'
                     alt='logo'
                 />
             </Link>
@@ -22,7 +18,6 @@ const Header = () => {
                     <Nav />
                 </div>
             </div>
-        </div>
     </div>
     
   )

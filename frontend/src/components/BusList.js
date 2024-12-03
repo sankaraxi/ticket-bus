@@ -16,6 +16,7 @@ const BusList = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // Fetch bus data from the backend using fetch API
     const fetchBuses = async () => {
       try {
@@ -44,7 +45,7 @@ const BusList = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className=' mx-4 my-6 sm:mx-72'>
+    <div className='pt-28 mx-4 my-6 sm:mx-72'>
       <div className="flex flex-col justify-center items-center">
           <h1 className="text-center font-palanquin font-bold text-3xl sm:text-4xl">Available Buses</h1>
           <div className="flex justify-center items-center mt-1 text-md sm:text-xl">
@@ -86,7 +87,7 @@ const BusList = () => {
            </div>
              
            <button 
-               className="absolute right-24 bottom-8 border border-solid border-transparent bg-red-500 text-white p-2 ml-2 rounded-md" key={bus?._id}
+               className="absolute right-20 bottom-8 border border-solid border-transparent bg-red-500 text-white p-2 px-7 ml-2 rounded-md" key={bus?._id}
                 onClick={() => handleBookNow(bus)}
                >
                    <div className='' >

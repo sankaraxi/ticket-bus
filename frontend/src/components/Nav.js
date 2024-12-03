@@ -6,7 +6,7 @@ const Nav = () => {
 
 
   return (
-    <div className='flex gap-4 text-lg'>
+    <div className='flex gap-4 text-xl'>
         <Link to='/'>
             <h1 className='cursor-pointer text-black hover:text-gray-400 font-semibold'>Home</h1>
         </Link>

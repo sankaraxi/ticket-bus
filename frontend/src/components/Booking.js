@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaLocationArrow } from 'react-icons/fa6';
 import { IoLocationSharp } from 'react-icons/io5';
 import { useLocation } from 'react-router-dom';
@@ -6,6 +6,10 @@ import { useLocation } from 'react-router-dom';
 const BookingPage = () => {
   const location = useLocation();
   const { bus } = location.state || {};
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [formData, setFormData] = useState({
     passengerName: '',
@@ -15,6 +19,7 @@ const BookingPage = () => {
   });
 
   if (!bus) return <p>No bus details available</p>;
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +65,7 @@ const BookingPage = () => {
   
 
   return (
-    <div className="mx-4 my-6 sm:mx-72">
+    <div className="pt-28 mx-4 my-6 sm:mx-72">
       <h1 className="text-4xl font-bold text-center mb-2">Booking for <span className='text-red-600'>{bus.name}</span></h1>
       <div className='px-72 flex justify-between items-center'>
         <h2 className='text-2xl flex gap-1 items-center text-center'><span><IoLocationSharp /></span><span className='font-extrabold'>Coimbatore</span></h2>
