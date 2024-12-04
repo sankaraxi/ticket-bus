@@ -34,8 +34,8 @@ const Home = () => {
 
         const data = await response.json();
         const monthlyData = calculateMonthlyBookings(data);
-        console.log(monthlyData);
-        setMonthlySummary(data);
+  
+        setMonthlySummary(monthlyData);
       } catch (err) {
         setError(err.message || 'Something went wrong');
       } finally {
