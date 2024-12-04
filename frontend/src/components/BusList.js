@@ -20,7 +20,7 @@ const BusList = () => {
     // Fetch bus data from the backend using fetch API
     const fetchBuses = async () => {
       try {
-        const response = await fetch('https://ticket-bus.onrender.com/api/buses'); // Adjust the API URL if necessary
+        const response = await fetch('http://localhost:5000/api/buses'); // Adjust the API URL if necessary
         console.log(response);
 
         if (!response.ok) {

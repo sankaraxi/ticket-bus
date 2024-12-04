@@ -1,5 +1,5 @@
 const express = require('express');
-const { bookTicket } = require('../controllers/bookingController');
+const { getBooking } = require('../controllers/bookingController');
 const Booking = require('../models/Booking');
 const router = express.Router();
 
@@ -14,5 +14,7 @@ router.post('/', async (req, res) => {
       res.status(500).json({ message: 'Error saving booking', error });
     }
   });
+
+router.get('/', getBooking);
 
 module.exports = router;

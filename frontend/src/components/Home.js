@@ -9,15 +9,43 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import calculateMonthlyBookings from '../utils/calculateMonthlyBookings';
 
 // Register the components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Home = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [userStats, setUserStats] = useState([]);
   const [monthlySummary, setMonthlySummary] = useState({});
   const [buses, setBuses] = useState([]);
   const [userHistory, setUserHistory] = useState([]);
+
+  useEffect(() => {
+    const fetchBooking = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/bookings'); // Adjust the API URL if necessary
+        console.log(response);
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch bus data');
+        }
+
+        const data = await response.json();
+        const monthlyData = calculateMonthlyBookings(data);
+        console.log(monthlyData);
+        setMonthlySummary(data);
+      } catch (err) {
+        setError(err.message || 'Something went wrong');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooking();
+  }, []);
+  console.log(monthlySummary);
 
   useEffect(() => {
     // Mock Data for Users
@@ -28,19 +56,7 @@ const Home = () => {
     ];
 
     // Mock Data for Monthly Summary
-    const monthlyData = {
-      January: 10,
-      February: 15,
-      March: 20,
-      May: 25,
-      June: 30,
-      July: 35,
-      August: 40,
-      September: 45,
-      October: 50,
-      November: 55,
-      December: 60,
-    };
+    
 
     // Mock Data for Buses
     const busesData = [
@@ -57,7 +73,7 @@ const Home = () => {
     ];
 
     setUserStats(usersData);
-    setMonthlySummary(monthlyData);
+    // setMonthlySummary(monthlyData);
     setBuses(busesData);
     setUserHistory(historyData);
   }, []); // Empty dependency array to ensure it runs only once when the component mounts
@@ -67,7 +83,7 @@ const Home = () => {
 
 
   return (
-    <div className="pt-32 p-6">
+    <div className="mt-32 mb-2 mx-44 bg-slate-300 p-10 rounded-md">
       <h1 className="text-3xl font-bold mb-6 text-center">Bus Ticket Booking Dashboard</h1>
 
       {/* Summary Cards */}
@@ -92,7 +108,7 @@ const Home = () => {
       </div>
 
         {/* Monthly Summary Graph */}
-        <div className="mb-6">
+        <div className="mb-6 bg-white p-6 rounded-md">
         <h2 className="text-xl font-semibold mb-4">Monthly Summary</h2>
         <Bar
           data={{
