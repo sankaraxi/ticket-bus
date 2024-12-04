@@ -67,7 +67,7 @@ const BookingPage = () => {
   return (
     <div className="pt-20 sm:pt-28 mx-4 my-6 sm:mx-72">
       <h1 className="text-2xl sm:text-4xl font-bold text-center mb-2">Booking for <span className='text-red-600'>{bus.name}</span></h1>
-      <div className='w-full sm:px-72 flex max-sm:flex-col justify-between items-center'>
+      <div className='w-full sm:px-44 flex max-sm:flex-col justify-between items-center'>
         <div className='flex w-5/12 flex-col items-center sm:items-start'>
           <h2 className='text-xl sm:text-2xl flex gap-1 items-center text-center'><span><IoLocationSharp /></span><span className='font-extrabold'>Coimbatore</span></h2>
           <p className='text-sm sm:text-lg font-semibold'>Departure Time: {bus.departureTime}</p>
