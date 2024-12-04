@@ -4,6 +4,7 @@ import { CDN_URL } from '../utils/constants';
 import { IoLocationSharp } from "react-icons/io5";
 import { FaLocationArrow } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import BusShimmer from './shimmer/BusShimmer';
 
 const BusList = () => {
   const [buses, setBuses] = useState([]);
@@ -20,7 +21,7 @@ const BusList = () => {
     // Fetch bus data from the backend using fetch API
     const fetchBuses = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/buses'); // Adjust the API URL if necessary
+        const response = await fetch('https://ticket-bus.onrender.com/api/buses'); // Adjust the API URL if necessary
         console.log(response);
 
         if (!response.ok) {
@@ -40,7 +41,7 @@ const BusList = () => {
     fetchBuses();
   }, []);
 
-  if (loading) return <p>Loading buses...</p>;
+  if (loading) return <BusShimmer/>;
   console.log(error);
   if (error) return <p>{error}</p>;
 

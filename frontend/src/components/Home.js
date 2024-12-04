@@ -11,6 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import calculateMonthlyBookings from '../utils/calculateMonthlyBookings';
 import { useNavigate } from 'react-router-dom';
+import HomeShimmer from './shimmer/HomeShimmer';
 
 // Register the components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -29,7 +30,7 @@ const Home = () => {
     // Fetch User Data
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/users'); // Adjust the API URL if necessary
+        const response = await fetch('https://ticket-bus.onrender.com/api/users'); // Adjust the API URL if necessary
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }
@@ -45,7 +46,7 @@ const Home = () => {
 
     const fetchBooking = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/bookings'); // Adjust the API URL if necessary
+        const response = await fetch('https://ticket-bus.onrender.com/api/bookings'); // Adjust the API URL if necessary
 
         if (!response.ok) {
           throw new Error('Failed to fetch bus data');
@@ -93,14 +94,14 @@ const Home = () => {
     navigate('/buses');
   }
 
-  if (loading) return <p className='pt-30'>Loading Data...</p>;
+  if (loading) return <p className='pt-30'><HomeShimmer/></p>;
   console.log(error);
   if (error) return <p>{error}</p>;
 
 
   return (
     <div className="mt-32 mb-2 mx-44 bg-slate-300 p-10 rounded-md">
-      <h1 className="text-3xl font-bold mb-6 text-center">Bus Ticket Booking Dashboard</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center">Ticket Bus <span className='text-red-500'>Dashboard</span></h1>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
