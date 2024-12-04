@@ -78,25 +78,30 @@ const BusList = () => {
                     <h4 className="text-md sm:text-xl pb-4 font-palanquin "><span className='font-semibold'>Arrival Time:</span> <span className='font-bold'>{bus?.arrivalTime}</span></h4>
                     <h4 className="text-md sm:text-3xl font-extrabold font-palanquin ">{'\u20B9'} {bus?.price}</h4>
                </div>
+               <div className='flex gap-1 flex-col items-center justify-center sm:w-4/12'>
+                  <img className="w-full h-60  object-cover object-center rounded-md"
+                      src={CDN_URL + bus?.image_id}
+                      alt="bus-item"
+                  />
+                    <button 
+                      className="border border-solid border-transparent w-full bg-red-500 text-white p-2 px-7 rounded-md" key={bus?._id}
+                        onClick={() => handleBookNow(bus)}
+                      >
+                          <div className='' >
+                              <h4 className='text-sm sm:text-lg'>
+                                  Book Now
+                              </h4>
+                          </div>    
+                  </button>
 
-               <img className="w-44 h-44 sm:w-3/12 sm:h-56 object-cover object-center rounded-md"
-                   src={CDN_URL + bus?.image_id}
-                   alt="bus-item"
-               />
+               </div>
+
+               
 
              
            </div>
              
-           <button 
-               className="absolute right-20 bottom-8 border border-solid border-transparent bg-red-500 text-white p-2 px-7 ml-2 rounded-md" key={bus?._id}
-                onClick={() => handleBookNow(bus)}
-               >
-                   <div className='' >
-                       <h4 className='text-sm sm:text-lg'>
-                           Book Now
-                       </h4>
-                   </div>    
-           </button>  
+           
            
        </div>  
           ))}
