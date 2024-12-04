@@ -8,7 +8,7 @@ const Header = () => {
             <Link to='/'>
                 <img 
                     src={LOGO}
-                    className='w-32 xl:w-64'
+                    className='w-56'
                     alt='logo'
                 />
             </Link>
