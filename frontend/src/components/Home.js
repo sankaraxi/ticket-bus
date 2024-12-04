@@ -20,6 +20,7 @@ const Home = () => {
   const [error, setError] = useState('');
   const [userStats, setUserStats] = useState([]);
   const [monthlySummary, setMonthlySummary] = useState({});
+  const [bookingData, setBookingData] = useState([]);
   const [buses, setBuses] = useState([]);
   const [userHistory, setUserHistory] = useState([]);
   const navigate = useNavigate();
@@ -51,6 +52,8 @@ const Home = () => {
         }
 
         const data = await response.json();
+        console.log(data);
+        setBookingData(data);
         const monthlyData = calculateMonthlyBookings(data);
   
         setMonthlySummary(monthlyData);
@@ -191,15 +194,41 @@ const Home = () => {
             </tr>
           </thead>
           <tbody>
-            {userHistory.map((history, index) => (
-              <tr key={index}>
-                <td className="border border-gray-300 p-2">{history.userName}</td>
-                <td className="border border-gray-300 p-2">{history.busName}</td>
-                <td className="border border-gray-300 p-2">{history.date}</td>
-                <td className="border border-gray-300 p-2">{history.seat}</td>
-                <td className="border border-gray-300 p-2">{'\u20B9'}{history.price}</td>
+              <tr >
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-1]?.userName}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-1]?.busName}</td>
+                <td className="border border-gray-300 p-2">
+                  {new Date(bookingData[bookingData.length - 1]?.date)
+                    .toLocaleDateString('en-GB')
+                    .replace(/\//g, '-')}
+                </td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-1]?.seat}</td>
+                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length-1]?.price}</td>
               </tr>
-            ))}
+              <tr >
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-2]?.userName}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-2]?.busName}</td>
+                <td className="border border-gray-300 p-2">
+                  {new Date(bookingData[bookingData.length - 2]?.date)
+                    .toLocaleDateString('en-GB')
+                    .replace(/\//g, '-')}
+                </td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-2]?.seat}</td>
+                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length-2]?.price}</td>
+              </tr>
+              <tr >
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-3]?.userName}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-3]?.busName}</td>
+                <td className="border border-gray-300 p-2">
+                  {new Date(bookingData[bookingData.length - 3]?.date)
+                    .toLocaleDateString('en-GB')
+                    .replace(/\//g, '-')}
+                </td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-3]?.seat}</td>
+                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length-3]?.price}</td>
+              </tr>
+              
+
           </tbody>
         </table>
       </div>
