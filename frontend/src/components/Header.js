@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import LOGO from '../assets/LOGO.png'
 import Nav from './Nav'
 import { Link } from 'react-router-dom'

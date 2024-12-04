@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import calculateMonthlyBookings from '../utils/calculateMonthlyBookings';
+import { useNavigate } from 'react-router-dom';
 
 // Register the components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -21,12 +22,29 @@ const Home = () => {
   const [monthlySummary, setMonthlySummary] = useState({});
   const [buses, setBuses] = useState([]);
   const [userHistory, setUserHistory] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Fetch User Data
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/users'); // Adjust the API URL if necessary
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+
+        const data = await response.json();
+        setUserStats(data);
+      } catch (err) {
+        setError(err.message || 'Something went wrong');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     const fetchBooking = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/bookings'); // Adjust the API URL if necessary
-        console.log(response);
 
         if (!response.ok) {
           throw new Error('Failed to fetch bus data');
@@ -43,42 +61,35 @@ const Home = () => {
       }
     };
 
+    fetchUsers();
     fetchBooking();
   }, []);
   console.log(monthlySummary);
 
   useEffect(() => {
-    // Mock Data for Users
-    const usersData = [
-      { name: "Alice", ticketsBooked: 5 },
-      { name: "Bob", ticketsBooked: 8 },
-      { name: "Charlie", ticketsBooked: 3 },
-    ];
 
-    // Mock Data for Monthly Summary
-    
-
-    // Mock Data for Buses
     const busesData = [
-      { name: "City Express", destination: "Erode", departureTime: "06:00 AM", price: 250 },
+      { name: "City Express", destination: "Erode", departureTime: "06:00 AM", price: 500 },
       { name: "Morning Star", destination: "Salem", departureTime: "07:30 AM", price: 475 },
       { name: "Sunset Journey", destination: "Trichy", departureTime: "08:00 PM", price: 1000 },
     ];
 
     // Mock Data for User History
     const historyData = [
-      { userName: "Alice", busName: "City Express", date: "2024-12-01", seat: 2, price: 500 },
-      { userName: "Bob", busName: "Morning Star", date: "2024-12-02", seat: 1, price: 475 },
+      { userName: "Kumar", busName: "City Express", date: "2024-12-01", seat: 2, price: 500 },
+      { userName: "Pradeep", busName: "Morning Star", date: "2024-12-02", seat: 1, price: 475 },
       { userName: "Charlie", busName: "Sunset Journey", date: "2024-12-03", seat: 3, price: 3000 },
     ];
 
-    setUserStats(usersData);
     // setMonthlySummary(monthlyData);
     setBuses(busesData);
     setUserHistory(historyData);
   }, []); // Empty dependency array to ensure it runs only once when the component mounts
 
-  const totalTicketsBooked = userStats.reduce((acc, user) => acc + user.ticketsBooked, 0);
+  const handleBookNow = () => {
+    navigate('/buses');
+  }
+
   const totalRevenue = userHistory.reduce((acc, history) => acc + history.price, 0);
 
 
@@ -150,6 +161,18 @@ const Home = () => {
             ))}
           </tbody>
         </table>
+        <div className='flex items-center justify-center pt-4'>
+          <button 
+                className="border border-solid border-transparent bg-red-500 text-white p-2 px-7 ml-2 rounded-md"
+                  onClick={() => handleBookNow()}
+                >
+                    <div className='' >
+                        <h4 className='text-sm sm:text-lg'>
+                            Book Now
+                        </h4>
+                    </div>    
+            </button>  
+        </div>
       </div>
 
       {/* User History */}
