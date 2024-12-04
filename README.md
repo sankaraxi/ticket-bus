@@ -1,6 +1,7 @@
 # Ticket Bus : Ticket Booking App
 
-A web application to browse and book bus tickets with a seamless user experience. The app fetches real-time bus data from a backend API and allows users to book tickets.
+A web application with attractive dashboard to browse and book bus tickets with a seamless user experience. The app fetches real-time bus data from a backend API and allows users to book tickets.
+
 
 ## Features
 
