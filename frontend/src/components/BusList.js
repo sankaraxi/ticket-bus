@@ -72,8 +72,8 @@ const BusList = () => {
                 
 
                <div className="sm:w-9/12 flex flex-col sm:m-4 sm:p-4">
-                   <h2 className="text-4xl max-sm:text-center sm:text-6xl font-poppins pb-4 font-semibold">{bus?.name}</h2>
-                   <h4 className="flex gap-2 max-sm:justify-center text-2xl items-center text- sm:text-3xl pb-4 font-palanquin "><span><FaLocationArrow /></span> <span className='font-bold'>{bus?.destination}</span></h4>
+                   <h2 className="text-4xl sm:text-6xl font-poppins pb-4 font-semibold">{bus?.name}</h2>
+                   <h4 className="flex gap-2 text-2xl items-center text- sm:text-3xl pb-4 font-palanquin "><span><FaLocationArrow /></span> <span className='font-bold'>{bus?.destination}</span></h4>
                     <h4 className="text-md sm:text-xl font-palanquin "><span className='font-semibold'>Departure Time:</span> <span className='font-bold'>{bus?.departureTime}</span></h4>
                     <h4 className="text-md sm:text-xl sm:pb-4 font-palanquin "><span className='font-semibold'>Arrival Time:</span> <span className='font-bold'>{bus?.arrivalTime}</span></h4>
                     <h4 className="text-md max-sm:pb-2 max-sm:text-right text-3xl sm:text-3xl font-extrabold font-palanquin ">{'\u20B9'} {bus?.price}</h4>
