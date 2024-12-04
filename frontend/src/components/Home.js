@@ -107,19 +107,19 @@ const Home = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div className="bg-blue-500 text-white p-4 rounded shadow-md">
           <h2 className="text-lg font-semibold">Total Users</h2>
-          <p className="text-2xl font-bold">{userStats.length}</p>
+          <p className="text-2xl font-bold">{bookingData.length}</p>
         </div>
         <div className="bg-green-500 text-white p-4 rounded shadow-md">
           <h2 className="text-lg font-semibold">Total Tickets Booked</h2>
           <p className="text-2xl font-bold">
-            {userStats.reduce((acc, user) => acc + user.ticketsBooked, 0)}
+            {bookingData.reduce((acc, bookingData) => acc + (Number(bookingData?.seat) || 0), 0)}
           </p>
         </div>
         <div className="bg-red-500 text-white p-4 rounded shadow-md">
           <h2 className="text-lg font-semibold">Revenue</h2>
           <p className="text-2xl font-bold">
             {'\u20B9'}
-            {userHistory.reduce((acc, history) => acc + history.price, 0)}
+            {bookingData.reduce((acc, bookingData) => acc + bookingData.price, 0)}
           </p>
         </div>
       </div>
