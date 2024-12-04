@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { use } from '../../../backend/routes/bookingRoutes';
 
 const About = () => {
   useEffect(() => {

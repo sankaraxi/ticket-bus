@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
-    <div className='fixed top-0 p-4 px-44 z-50 w-full bg-gray-200 bg-gradient-to-br from-white flex items-center justify-between shadow-md'>
+    <div className='fixed top-0 p-4 px-44 z-50 w-full bg-gray-100 bg-gradient-to-br from-white flex items-center justify-between shadow-md'>
             <Link to='/'>
                 <img 
                     src={LOGO}

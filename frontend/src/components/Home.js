@@ -90,7 +90,9 @@ const Home = () => {
     navigate('/buses');
   }
 
-  const totalRevenue = userHistory.reduce((acc, history) => acc + history.price, 0);
+  if (loading) return <p className='pt-30'>Loading Data...</p>;
+  console.log(error);
+  if (error) return <p>{error}</p>;
 
 
   return (
