@@ -100,7 +100,7 @@ const Home = () => {
 
 
   return (
-    <div className="mt-32 mb-2 mx-44 bg-slate-300 p-10 rounded-md">
+    <div className="mt-20 sm:mt-32 sm:mb-2 sm:mx-44 bg-slate-300 p-10 rounded-md">
       <h1 className="text-4xl font-bold mb-6 text-center">Ticket Bus <span className='text-red-500'>Dashboard</span></h1>
 
       {/* Summary Cards */}
@@ -124,27 +124,38 @@ const Home = () => {
         </div>
       </div>
 
-        {/* Monthly Summary Graph */}
-        <div className="mb-6 bg-white p-6 rounded-md">
+      {/* Monthly Summary Graph */}
+      <div className="mb-6 bg-white p-6 rounded-md">
         <h2 className="text-xl font-semibold mb-4">Monthly Summary</h2>
-        <Bar
-          data={{
-            labels: Object.keys(monthlySummary),
-            datasets: [
-              {
-                label: 'Tickets Booked',
-                data: Object.values(monthlySummary),
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-              },
-            ],
-          }}
-          options={{ responsive: true, maintainAspectRatio: true }}
-        />
+
+        <div className="overflow-x-auto">
+          {/* Add a height style to the wrapper for consistent graph size */}
+          <div className="min-w-[600px] h-[300px] sm:h-[400px]">
+            <Bar
+              data={{
+                labels: Object.keys(monthlySummary),
+                datasets: [
+                  {
+                    label: 'Tickets Booked',
+                    data: Object.values(monthlySummary),
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                  },
+                ],
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+              }}
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Available Buses */}
+
+
+    {/* Available Buses */}
       <div className="mb-6">
         <h2 className="text-xl font-semibold mb-4">Available Buses</h2>
         <table className="w-full bg-white border-collapse border border-gray-200 shadow-md">
@@ -184,55 +195,56 @@ const Home = () => {
       {/* User History */}
       <div>
         <h2 className="text-xl font-semibold mb-4">User Purchase History</h2>
-        <table className="w-full bg-white border-collapse border border-gray-200 shadow-md">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 p-2">User Name</th>
-              <th className="border border-gray-300 p-2">Bus Name</th>
-              <th className="border border-gray-300 p-2">Date</th>
-              <th className="border border-gray-300 p-2">Seats</th>
-              <th className="border border-gray-300 p-2">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr >
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-1]?.userName}</td>
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-1]?.busName}</td>
+        <div className="overflow-x-auto w-full">
+          <table className="w-full bg-white border-collapse border border-gray-200 shadow-md">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 p-2">User Name</th>
+                <th className="border border-gray-300 p-2">Bus Name</th>
+                <th className="border border-gray-300 p-2">Date</th>
+                <th className="border border-gray-300 p-2">Seats</th>
+                <th className="border border-gray-300 p-2">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 1]?.userName}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 1]?.busName}</td>
                 <td className="border border-gray-300 p-2">
                   {new Date(bookingData[bookingData.length - 1]?.date)
                     .toLocaleDateString('en-GB')
                     .replace(/\//g, '-')}
                 </td>
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-1]?.seat}</td>
-                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length-1]?.price}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 1]?.seat}</td>
+                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length - 1]?.price}</td>
               </tr>
-              <tr >
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-2]?.userName}</td>
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-2]?.busName}</td>
+              <tr>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 2]?.userName}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 2]?.busName}</td>
                 <td className="border border-gray-300 p-2">
                   {new Date(bookingData[bookingData.length - 2]?.date)
                     .toLocaleDateString('en-GB')
                     .replace(/\//g, '-')}
                 </td>
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-2]?.seat}</td>
-                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length-2]?.price}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 2]?.seat}</td>
+                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length - 2]?.price}</td>
               </tr>
-              <tr >
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-3]?.userName}</td>
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-3]?.busName}</td>
+              <tr>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 3]?.userName}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 3]?.busName}</td>
                 <td className="border border-gray-300 p-2">
                   {new Date(bookingData[bookingData.length - 3]?.date)
                     .toLocaleDateString('en-GB')
                     .replace(/\//g, '-')}
                 </td>
-                <td className="border border-gray-300 p-2">{bookingData[bookingData.length-3]?.seat}</td>
-                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length-3]?.price}</td>
+                <td className="border border-gray-300 p-2">{bookingData[bookingData.length - 3]?.seat}</td>
+                <td className="border border-gray-300 p-2">{'\u20B9'}{bookingData[bookingData.length - 3]?.price}</td>
               </tr>
-              
-
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
+
     </div>
   );
 };

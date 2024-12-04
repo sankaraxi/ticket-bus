@@ -65,18 +65,24 @@ const BookingPage = () => {
   
 
   return (
-    <div className="pt-28 mx-4 my-6 sm:mx-72">
-      <h1 className="text-4xl font-bold text-center mb-2">Booking for <span className='text-red-600'>{bus.name}</span></h1>
-      <div className='px-72 flex justify-between items-center'>
-        <h2 className='text-2xl flex gap-1 items-center text-center'><span><IoLocationSharp /></span><span className='font-extrabold'>Coimbatore</span></h2>
-        <h2 className='text-2xl flex gap-1 items-center text-center'><span><FaLocationArrow /></span><span className='font-extrabold'>{bus.destination}</span></h2>
+    <div className="pt-20 sm:pt-28 mx-4 my-6 sm:mx-72">
+      <h1 className="text-2xl sm:text-4xl font-bold text-center mb-2">Booking for <span className='text-red-600'>{bus.name}</span></h1>
+      <div className='sm:px-72 flex max-sm:flex-col justify-between items-center'>
+        <div className='flex flex-col items-center sm:items-start justify-center'>
+          <h2 className='text-xl sm:text-2xl flex gap-1 items-center text-center'><span><IoLocationSharp /></span><span className='font-extrabold'>Coimbatore</span></h2>
+          <p className='text-sm sm:text-lg font-semibold'>Departure Time: {bus.departureTime}</p>
+        </div>
+        <div className='max-sm:pt-3 flex flex-col items-center sm:items-end justify-center'>
+          <h2 className='text-xl sm:text-2xl flex gap-1 items-center text-center'><span><FaLocationArrow /></span><span className='font-extrabold'>{bus.destination}</span></h2>
+          <p className='text-sm sm:text-lg font-semibold'>Arrival Time: {bus.arrivalTime}</p>
+        </div>
       </div>
-      <div className='px-72 flex justify-between'>
-        <p className='text-lg font-semibold'>Departure Time: {bus.departureTime}</p>
-        <p className='text-lg font-semibold'>Arrival Time: {bus.arrivalTime}</p>
+      <div className='sm:px-72 flex justify-between'>
+        
+       
       </div>
-      <p className='text-3xl text-center py-3'><span className='font-bold'>{'\u20B9'}{bus.price}</span><span> Per Ticket</span></p>
-      <div className='mx-44 bg-white'>
+      <p className='text-2xl sm:text-3xl text-center py-3'><span className='font-bold'>{'\u20B9'}{bus.price}</span><span> Per Ticket</span></p>
+      <div className='sm:mx-44 bg-white'>
         <form className="p-10 bg-slate-200" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block font-semibold" htmlFor="passengerName">

@@ -5,7 +5,7 @@ const About = () => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className=" mt-28 min-h-screen bg-gradient-to-r from-teal-100 to-blue-200 flex items-center justify-center">
+    <div className=" mt-20 sm:mt-24 min-h-screen bg-gradient-to-r from-teal-100 to-blue-200 flex items-center justify-center">
       <div className="max-w-5xl mx-auto p-8 bg-white shadow-lg rounded-lg">
         <h1 className="text-4xl font-bold text-gray-800 text-center mb-6">
           About Us
